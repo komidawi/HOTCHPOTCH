@@ -1,9 +1,14 @@
 plugins {
     kotlin("jvm") version "2.0.21"
+    application
+}
+
+kotlin {
+    jvmToolchain(21)
 }
 
 group = "it.komidawi"
-version = "1.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 repositories {
     mavenCentral()
@@ -16,6 +21,15 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
-kotlin {
-    jvmToolchain(21)
+
+// To be able to run `./gradlew run`
+application {
+    mainClass.set("it.komidawi.MainKt")
+}
+
+// To be able to run with `java -jar app.jar`
+tasks.withType<Jar> {
+    manifest {
+        attributes["Main-Class"] = "it.komidawi.MainKt"
+    }
 }
