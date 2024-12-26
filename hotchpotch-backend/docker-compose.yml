@@ -1,0 +1,6 @@
+services:
+  backend:
+    build:
+      context: .
+    image: hotchpotch-backend:latest
+    container_name: hotchpotch-backend
